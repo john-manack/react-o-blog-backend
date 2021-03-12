@@ -1,7 +1,7 @@
 'use strict';
 const HTTP = require('http');
 
-const HOSTNAME = '12.0.0.1',
+const HOSTNAME = '127.0.0.1',
     PORT = 3000;
 
 const cors = require('cors');
@@ -24,4 +24,4 @@ const rootController = require('./routes/index');
 const entriesController = require('./routes/entries')
 
 app.use('/', rootController);
-app.use('/entries/', rootController);
+app.use('/entries/', entriesController);

@@ -1,10 +1,12 @@
 'use strict';
 
 const express = require('express'),
-    router = express.Router();
+    router = express.Router(),
+    albumModel = require('../models/AlbumModel');
 
-router.get('/', (req, res) => {
-    res.json('Welcome to the Classic Rock Review API').status(200);
+router.get('/', async (req, res) => {
+
+    res.json('Welcome to the Classic Rock Album API').status(200);
 });
 
 module.exports = router;
