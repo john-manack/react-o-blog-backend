@@ -45,6 +45,11 @@ class AlbumModel {
         }
     }
 
+    static async addEntry(album_name, band_name, slug, link, cover) {
+        const response = await db.result(`INSERT INTO album (album_name, band_name, slug, link, cover) VALUES ($1, $2, $3)`, [album_name, band_name, slug, link, cover]);
+        return response;
+    }
+
 }
 
 module.exports = AlbumModel;
