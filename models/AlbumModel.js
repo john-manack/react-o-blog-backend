@@ -11,7 +11,11 @@ class AlbumModel {
     
     static async getList() {
         const response = await db.any(`
-            SELECT * FROM album;
+            SELECT album.id, album_name, band_name, slug, link, cover, stars, comment_message
+            FROM album
+            INNER JOIN comment
+                ON album.id = comment.album_reference
+            ORDER BY album.id ASC;
         `);
         return response;
     }
@@ -19,7 +23,11 @@ class AlbumModel {
     static async getBySlug(slug) {
         try {
             const response = await db.one(`
-                SELECT * FROM album WHERE slug = '${slug}';
+            SELECT album.id, album_name, band_name, slug, link, cover, stars, comment_message
+            FROM album
+            INNER JOIN comment
+                ON album.id = comment.album_reference 
+            WHERE slug = '${slug}';
             `);
             return response;
         } catch (error) {
