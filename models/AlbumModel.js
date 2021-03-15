@@ -21,6 +21,7 @@ class AlbumModel {
             const response = await db.one(`
                 SELECT * FROM album WHERE slug = '${slug}';
             `);
+            console.log('response is', response);
             return response;
         } catch (error) {
             console.error("ERROR: ", error);
@@ -30,7 +31,7 @@ class AlbumModel {
 
     static async getAlbumInfo(slug) {
         try {
-            const response = await db.any(`
+            const response = await db.one(`
                 SELECT *
                 FROM album
                 INNER JOIN comment
